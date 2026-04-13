@@ -12,7 +12,7 @@ class HomeScreens extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Local Fixers'),
+        title: const Text('Fixora Local Fixers'),
         elevation: 3,
         actions: [
           CircleAvatar(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:localfixers/provider/local_services.dart';
+import 'package:localfixers/screens/service_listing_detail_screen.dart';
 import 'package:provider/provider.dart';
 
 class ServiceList extends StatelessWidget {
@@ -11,7 +12,7 @@ class ServiceList extends StatelessWidget {
     final serviceListing = serviceProvider.serviceList;
 
     return SizedBox(
-      height: 1300,
+      height: 1400,
       child: ListView.builder(
         physics: NeverScrollableScrollPhysics(),
         itemCount: serviceListing.length,
@@ -47,12 +48,27 @@ class ServiceList extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        serviceChoice.title,
-                        style: TextStyle(
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF00174A)
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context, 
+                            MaterialPageRoute(
+                              builder: (_) => ServiceListingDetailScreen(
+                                serviceChoice.featuredImage,
+                                serviceChoice.title,
+                                serviceChoice.rating,
+                                serviceChoice.description
+                              )
+                            )
+                          );
+                        },
+                        child: Text(
+                          serviceChoice.title,
+                          style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF00174A)
+                          ),
                         ),
                       ),
                       SizedBox(height: 10,),
