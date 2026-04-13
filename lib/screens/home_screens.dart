@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:localfixers/widget/appdrawer.dart';
 import 'package:localfixers/widget/department.dart';
 import 'package:localfixers/widget/hero_section.dart';
+import 'package:localfixers/widget/service_list.dart';
 import 'package:localfixers/widget/top_choice.dart';
 
 class HomeScreens extends StatelessWidget {
@@ -82,7 +83,9 @@ class HomeScreens extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 20,),
-                TopChoice()
+                TopChoice(),
+                SizedBox(height: 20,),
+                ServiceList()
               ],
             ),
           ),
