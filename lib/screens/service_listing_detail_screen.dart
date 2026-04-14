@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:localfixers/widget/bottom_navigation.dart';
 import 'package:localfixers/widget/custom_container.dart';
 import 'package:localfixers/widget/hero_style.dart';
 
@@ -25,6 +26,7 @@ class ServiceListingDetailScreen extends StatelessWidget {
           )
         ],
       ),
+      bottomNavigationBar: BottomNavigation(),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -119,7 +121,74 @@ class ServiceListingDetailScreen extends StatelessWidget {
                         )
                       ],
                     ),
-                  )
+                  ),
+                  SizedBox(height: 20,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Client Perspectives',
+                        style: TextStyle(
+                          fontSize: 25,
+                          color: Color(0xFF0D2C6E),
+                          fontWeight: FontWeight.bold
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {}, 
+                        child: Text(
+                          'See all',
+                          style: TextStyle(
+                            color: Color(0xFF001A41),
+                            fontSize: 16
+                          ),
+                        )
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 10,),
+                  CustomContainer(
+                    Column(
+                      children: [
+                        ListTile(
+                          leading: CircleAvatar(
+                            backgroundColor: Colors.blue[100],
+                            child: Text(
+                              'MS',
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Color(0xFF0D2C6E),
+                                fontWeight: FontWeight.bold
+                              ),
+                            ),
+                          ),
+                          title: Text(
+                            'Marcus Sterling'
+                          ),
+                          subtitle: Row(
+                            children: [
+                              Icon(Icons.star, color: Color(0xFF005234), size: 20,),
+                              Icon(Icons.star, color: Color(0xFF005234), size: 20,),
+                              Icon(Icons.star, color: Color(0xFF005234), size: 20,),
+                              Icon(Icons.star, color: Color(0xFF005234), size: 20,),
+                              Icon(Icons.star, color: Color(0xFF005234), size: 20,),
+                            ],
+                          ),
+                          trailing: Text(
+                            '2 days ago'
+                          ),
+                        ),
+                        Text(
+                          '"The attention to detail was beyond anything I\'ve experienced before. Every surface gleams, and the house feels fresh without the harsh chemical smell"',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontStyle: FontStyle.italic,
+                          ),
+                        )
+                      ],
+                    )
+                  ),
+                  SizedBox(height: 20,),
                   ],
                 ),
               )
