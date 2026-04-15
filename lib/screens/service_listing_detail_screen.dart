@@ -7,8 +7,9 @@ class ServiceListingDetailScreen extends StatelessWidget {
   final String image;
   final String title;
   final double rating;
+  final double price;
   final String description;
-  const ServiceListingDetailScreen(this.image, this.title, this.rating, this.description, {super.key});
+  const ServiceListingDetailScreen(this.image, this.title, this.rating, this.price, this.description, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,7 @@ class ServiceListingDetailScreen extends StatelessWidget {
           )
         ],
       ),
-      bottomNavigationBar: BottomNavigation(),
+      bottomNavigationBar: BottomNavigation(image, title, price),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -81,7 +82,7 @@ class ServiceListingDetailScreen extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Icon(Icons.alarm, color: Color(0xFF005234), size: 30,),
+                          Icon(Icons.timer, color: Color(0xFF005234), size: 30,),
                           Text(
                             'Efficient',
                             style: TextStyle(

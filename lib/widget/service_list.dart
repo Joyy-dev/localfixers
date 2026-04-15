@@ -57,6 +57,7 @@ class ServiceList extends StatelessWidget {
                                 serviceChoice.featuredImage,
                                 serviceChoice.title,
                                 serviceChoice.rating,
+                                serviceChoice.price,
                                 serviceChoice.description
                               )
                             )
