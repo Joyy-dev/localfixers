@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:localfixers/screens/auth_screen.dart';
 import 'package:localfixers/widget/appdrawer.dart';
 import 'package:localfixers/widget/department.dart';
 import 'package:localfixers/widget/hero_section.dart';
@@ -16,7 +17,15 @@ class HomeScreens extends StatelessWidget {
         elevation: 3,
         actions: [
           CircleAvatar(
-            child: Icon(Icons.person),
+            child: IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context, 
+                  MaterialPageRoute(builder: (_) => AuthScreen())
+                );
+              },
+              icon: Icon(Icons.person) 
+            ),
           )
         ],
       ),
