@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:localfixers/screens/home_screens.dart';
 import 'package:localfixers/services/auth.dart';
 import 'package:localfixers/widget/auth_button.dart';
+import 'package:localfixers/widget/tab_switcher.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
@@ -21,6 +22,7 @@ class _AuthScreenState extends State<AuthScreen> {
   bool _ischecked = false;
   bool _isLoading = false;
   bool _obscureText = true;
+  int _selectedIndex = 0;
 
   @override
   void dispose() {
@@ -39,6 +41,7 @@ class _AuthScreenState extends State<AuthScreen> {
   }
 
   Future<void> _onFormSubmit() async {
+
     if (_formKey.currentState!.validate()) {
       final name = _nameController.text.trim();
       final email = _emailController.text.trim();
@@ -55,10 +58,30 @@ class _AuthScreenState extends State<AuthScreen> {
           await _auth.signUP(email: email, fullName: name, password: password);
         }
         if (mounted) {
-          Navigator.pushReplacement(
-            context, 
-            MaterialPageRoute(builder: (_) => HomeScreens())
-          );
+          if (_selectedIndex == 0) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => HomeScreens())
+            );
+          } else {
+            if (_selectedIndex == 1) {
+              Navigator.pushReplacement(
+                context, 
+                MaterialPageRoute(builder: (_) => HomeScreens())
+              );
+            }
+          }
+        //   Navigator.pushReplacement(
+        //     context, 
+        //     MaterialPageRoute(builder: (_) => HomeScreens())
+        //   );
+        // } else {
+        //   if (_selectedIndex == 0) {
+        //     Navigator.pushReplacement(
+        //       context, 
+        //       MaterialPageRoute(builder: (_) => HomeScreens())
+        //     );
+        //   }
         }
       } catch (e) {
         if (mounted) {
@@ -125,6 +148,42 @@ class _AuthScreenState extends State<AuthScreen> {
                         child: Column(
                           children: [
                             if (!_isLogin) ...[
+                              Container(
+                                padding: EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                  color: Colors.blueGrey[50],
+                                  borderRadius: BorderRadius.circular(13)
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    TabSwitcher(
+                                      title: 'Purchase A Service', 
+                                      index: 0, 
+                                      selectedIndex: _selectedIndex, 
+                                      onTap: (i) {
+                                        setState(() {
+                                          _selectedIndex = i;
+                                        });
+                                      }
+                                    ),
+                                    const SizedBox(width: 10,),
+                                    TabSwitcher(
+                                      title: 'Sell a service', 
+                                      index: 1, 
+                                      selectedIndex: _selectedIndex, 
+                                      onTap: (i) {
+                                        setState(() {
+                                          _selectedIndex = i;
+                                        });
+                                      }
+                                    )
+                                  ],
+                                ),
+                              ),
+
+                              
+                              SizedBox(height: 20,),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
