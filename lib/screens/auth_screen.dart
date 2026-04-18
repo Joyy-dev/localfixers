@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:localfixers/screens/buyer/buyer_home_screens.dart';
 import 'package:localfixers/screens/home_screens.dart';
 import 'package:localfixers/services/auth.dart';
 import 'package:localfixers/widget/auth_button.dart';
@@ -22,7 +23,7 @@ class _AuthScreenState extends State<AuthScreen> {
   bool _ischecked = false;
   bool _isLoading = false;
   bool _obscureText = true;
-  int _selectedIndex = 0;
+  int? _selectedIndex;
 
   @override
   void dispose() {
@@ -41,11 +42,14 @@ class _AuthScreenState extends State<AuthScreen> {
   }
 
   Future<void> _onFormSubmit() async {
-
     if (_formKey.currentState!.validate()) {
       final name = _nameController.text.trim();
       final email = _emailController.text.trim();
       final password = _passwordController.text.trim();
+
+      if (!_isLogin && _selectedIndex == null) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Please select a role')));
+      }
 
       setState(() {
         _isLoading = true;
@@ -53,35 +57,50 @@ class _AuthScreenState extends State<AuthScreen> {
 
       try {
         if (_isLogin) {
-          await _auth.signIn(email: email, password: password);
+          final userCredential = await _auth.signIn(email: email, password: password);
+          final user = userCredential.user;
+
+          if (user != null) {
+            final role = await _auth.getUserRole(user.uid);
+
+            if (mounted) {
+              if (role == 'Purchase A Service') {
+                Navigator.pushReplacement(
+                  context, 
+                  MaterialPageRoute(builder: (_) => BuyerHomeScreens())
+                );
+              } else if (role == 'Sell a Service') {
+                Navigator.pushReplacement(
+                  context, 
+                  MaterialPageRoute(builder: (_) => HomeScreens())
+                );
+              } else {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('User role not found')));
+              }
+            }
+          }
         } else {
-          await _auth.signUP(email: email, fullName: name, password: password);
+          await _auth.signUP(email: email, fullName: name, password: password, userRole: _selectedIndex == 0 ? 'Purchase A Service' : 'Sell a service');
         }
         if (mounted) {
-          if (_selectedIndex == 0) {
-            Navigator.push(
-              context,
+          if (_isLogin) {
+            Navigator.pushReplacement(
+              context, 
               MaterialPageRoute(builder: (_) => HomeScreens())
             );
           } else {
-            if (_selectedIndex == 1) {
+            if (_selectedIndex == 0) {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (_) => BuyerHomeScreens())
+            );
+          } else if (_selectedIndex == 1) {
               Navigator.pushReplacement(
                 context, 
                 MaterialPageRoute(builder: (_) => HomeScreens())
               );
             }
           }
-        //   Navigator.pushReplacement(
-        //     context, 
-        //     MaterialPageRoute(builder: (_) => HomeScreens())
-        //   );
-        // } else {
-        //   if (_selectedIndex == 0) {
-        //     Navigator.pushReplacement(
-        //       context, 
-        //       MaterialPageRoute(builder: (_) => HomeScreens())
-        //     );
-        //   }
         }
       } catch (e) {
         if (mounted) {
@@ -160,7 +179,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                     TabSwitcher(
                                       title: 'Purchase A Service', 
                                       index: 0, 
-                                      selectedIndex: _selectedIndex, 
+                                      selectedIndex: _selectedIndex ?? -1, 
                                       onTap: (i) {
                                         setState(() {
                                           _selectedIndex = i;
@@ -171,7 +190,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                     TabSwitcher(
                                       title: 'Sell a service', 
                                       index: 1, 
-                                      selectedIndex: _selectedIndex, 
+                                      selectedIndex: _selectedIndex ?? -1, 
                                       onTap: (i) {
                                         setState(() {
                                           _selectedIndex = i;
@@ -336,9 +355,9 @@ class _AuthScreenState extends State<AuthScreen> {
                                     title: Text(
                                       'Keep me signed in.'
                                     ),
-                                    onChanged: (bool? ischecked) {
+                                    onChanged: (bool? value) {
                                       setState(() {
-                                        ischecked = _ischecked;
+                                        _ischecked = value ?? false;
                                       });
                                     },
                                     controlAffinity: ListTileControlAffinity.leading,

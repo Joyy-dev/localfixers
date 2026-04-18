@@ -5,7 +5,7 @@ class Auth {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  Future<UserCredential?> signUP ({required String email, required String fullName, required String password}) async {
+  Future<UserCredential?> signUP ({required String email, required String fullName, required String password, required String userRole}) async {
     try {
       UserCredential userCredential = await _auth.createUserWithEmailAndPassword(email: email, password: password);
 
@@ -14,6 +14,7 @@ class Auth {
           'uid': userCredential.user!.uid,
           'fullName': fullName,
           'email': email,
+          'role': userRole,
           'createdAt': FieldValue.serverTimestamp()
         });
       }
@@ -47,5 +48,17 @@ class Auth {
 
   Future<void> signOut() async {
     await _auth.signOut();
+  }
+
+  Future<String?> getUserRole(String uid) async {
+    try {
+      final doc = await _firestore.collection('users').doc(uid).get();
+      
+      final data = doc.data();
+
+      return data?['role'];
+    } catch (e) {
+      throw Exception('Failed to fetch user role');
+    }
   }
 }

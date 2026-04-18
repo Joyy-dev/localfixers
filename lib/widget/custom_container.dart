@@ -9,6 +9,7 @@ class CustomContainer extends StatelessWidget {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.all(15),
+      margin: EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(15),

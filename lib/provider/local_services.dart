@@ -10,7 +10,8 @@ class LocalServices with ChangeNotifier{
       description: 'Comprehensive deep cleaning by our certified luxury housekeeping team', 
       featuredImage: 'assets/images/clean.png', 
       rating: 4.9,
-      price: 199
+      price: 199,
+      sellername: 'Julian Vance'
     ),
     Services(
       id: 'S2', 
@@ -19,7 +20,8 @@ class LocalServices with ChangeNotifier{
       description: 'Bespoke landscape architecture and seasonal maintenance for estates', 
       featuredImage: 'assets/images/water.png', 
       rating: 4.8,
-      price: 85
+      price: 85,
+      sellername: 'Tim Robbins'
     ),
     Services(
       id: 'S3', 
@@ -28,7 +30,8 @@ class LocalServices with ChangeNotifier{
       description: 'Certified automation experts for lighting and security systems', 
       featuredImage: 'assets/images/electrician.png', 
       rating: 5.0,
-      price: 98
+      price: 98,
+      sellername: 'Lady D'
     ),
     Services(
       id: 'S4', 
@@ -37,7 +40,8 @@ class LocalServices with ChangeNotifier{
       description: 'Urgent repairs and luxury fixture installations with precision care', 
       featuredImage: 'assets/images/plumber.png', 
       rating: 4.7, 
-      price: 430
+      price: 430,
+      sellername: 'Jack Mayor'
     )
   ];
 
