@@ -90,11 +90,7 @@ class Recommendation extends StatelessWidget {
                             onPressed: () {
                               Navigator.push(
                                 context, 
-                                MaterialPageRoute(builder: (_) => BookingScreens(
-                                  recommend.featuredImage, 
-                                  recommend.title, 
-                                  recommend.price
-                                ))
+                                MaterialPageRoute(builder: (_) => BookingScreens())
                               );
                             },
                             style: ElevatedButton.styleFrom(

@@ -81,14 +81,14 @@ class _AuthScreenState extends State<AuthScreen> {
           }
         } else {
           await _auth.signUP(email: email, fullName: name, password: password, userRole: _selectedIndex == 0 ? 'Purchase A Service' : 'Sell a service');
-        }
+        
         if (mounted) {
-          if (_isLogin) {
-            Navigator.pushReplacement(
-              context, 
-              MaterialPageRoute(builder: (_) => HomeScreens())
-            );
-          } else {
+          // if (_isLogin) {
+          //   Navigator.pushReplacement(
+          //     context, 
+          //     MaterialPageRoute(builder: (_) => HomeScreens())
+          //   );
+          // } else {
             if (_selectedIndex == 0) {
             Navigator.pushReplacement(
               context,

@@ -27,7 +27,7 @@ class ServiceListingDetailScreen extends StatelessWidget {
           )
         ],
       ),
-      bottomNavigationBar: BottomNavigation(image, title, price),
+      bottomNavigationBar: BottomNavigation(),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(

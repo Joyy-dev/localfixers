@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:localfixers/screens/booking_screens.dart';
 
 class BottomNavigation extends StatelessWidget {
-  final String image;
-  final String title;
-  final double price;
-  const BottomNavigation(this.image, this.title, this.price, {super.key});
+
+  const BottomNavigation({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +54,7 @@ class BottomNavigation extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context, 
-                    MaterialPageRoute(builder: (_) => BookingScreens(image, title, price))
+                    MaterialPageRoute(builder: (_) => BookingScreens())
                   ); 
                 }, 
                 style: ElevatedButton.styleFrom(
