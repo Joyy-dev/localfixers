@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:localfixers/widget/handle_booking.dart';
 
 class TopChoice extends StatelessWidget {
   const TopChoice({super.key});
@@ -91,7 +92,12 @@ class TopChoice extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10)
                   )
                 ),
-                onPressed: () {}, 
+                onPressed: () {
+                  Navigator.push(
+                    context, 
+                    MaterialPageRoute(builder: (_) => HandleBooking())
+                  );
+                },
                 child: Text('Book Now')
               )
             ],

@@ -97,7 +97,8 @@ class BuyerHomeScreens extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 10,),
-                Recommendation()
+                Recommendation(),
+                
               ],
             ),
           ),

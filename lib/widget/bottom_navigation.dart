@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:localfixers/screens/booking_screens.dart';
+import 'package:localfixers/widget/handle_booking.dart';
 
 class BottomNavigation extends StatelessWidget {
 
@@ -54,9 +54,9 @@ class BottomNavigation extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context, 
-                    MaterialPageRoute(builder: (_) => BookingScreens())
-                  ); 
-                }, 
+                    MaterialPageRoute(builder: (_) => HandleBooking())
+                  );
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color(0xFF001A41),
                   elevation: 0

@@ -4,6 +4,7 @@ import 'package:localfixers/screens/service_listing_detail_screen.dart';
 import 'package:provider/provider.dart';
 
 class ServiceList extends StatelessWidget {
+  
   const ServiceList({super.key});
 
   @override
