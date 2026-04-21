@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:localfixers/widget/handle_booking.dart';
+import 'package:localfixers/navigation/handle_booking.dart';
 
 class TopChoice extends StatelessWidget {
   const TopChoice({super.key});

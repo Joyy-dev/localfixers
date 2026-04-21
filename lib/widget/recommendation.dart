@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:localfixers/navigation/handle_service_listing.dart';
 import 'package:localfixers/provider/local_services.dart';
 import 'package:localfixers/screens/booking_screens.dart';
-import 'package:localfixers/screens/service_listing_detail_screen.dart';
 import 'package:provider/provider.dart';
 
 class Recommendation extends StatelessWidget {
@@ -103,14 +103,7 @@ class Recommendation extends StatelessWidget {
                             onPressed: () {
                               Navigator.push(
                                 context, 
-                                MaterialPageRoute(builder: (_) => ServiceListingDetailScreen(
-                                  index
-                                  // recommend.featuredImage, 
-                                  // recommend.title, 
-                                  // recommend.rating, 
-                                  // recommend.price, 
-                                  // recommend.description
-                                ))
+                                MaterialPageRoute(builder: (_) => HandleServiceListing(index))
                               );
                             }, 
                             child: Row(

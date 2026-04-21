@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:localfixers/navigation/handle_service_listing.dart';
 import 'package:localfixers/provider/local_services.dart';
-import 'package:localfixers/screens/service_listing_detail_screen.dart';
 import 'package:provider/provider.dart';
 
 class ServiceList extends StatelessWidget {
@@ -54,13 +54,8 @@ class ServiceList extends StatelessWidget {
                           Navigator.push(
                             context, 
                             MaterialPageRoute(
-                              builder: (_) => ServiceListingDetailScreen(
+                              builder: (_) => HandleServiceListing(
                                 index
-                                // serviceChoice.featuredImage,
-                                // serviceChoice.title,
-                                // serviceChoice.rating,
-                                // serviceChoice.price,
-                                // serviceChoice.description
                               )
                             )
                           );

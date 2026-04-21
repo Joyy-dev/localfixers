@@ -1,5 +1,6 @@
+//import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:localfixers/widget/handle_booking.dart';
+import 'package:localfixers/navigation/handle_booking.dart';
 
 class BottomNavigation extends StatelessWidget {
 
@@ -22,7 +23,9 @@ class BottomNavigation extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10)
               ),
               child: ElevatedButton(
-                onPressed: () {}, 
+                onPressed: () {
+                  //FirebaseAuth.instance.signOut();
+                }, 
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.white, 
                   elevation: 0,           
