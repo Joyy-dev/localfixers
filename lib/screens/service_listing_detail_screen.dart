@@ -1,29 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:localfixers/provider/local_services.dart';
 import 'package:localfixers/widget/bottom_navigation.dart';
 import 'package:localfixers/widget/custom_container.dart';
+import 'package:localfixers/widget/customer_reviews.dart';
 import 'package:localfixers/widget/hero_style.dart';
+import 'package:localfixers/widget/service_badge.dart';
+import 'package:provider/provider.dart';
 
 class ServiceListingDetailScreen extends StatelessWidget {
-  final String image;
-  final String title;
-  final double rating;
-  final double price;
-  final String description;
-  const ServiceListingDetailScreen(this.image, this.title, this.rating, this.price, this.description, {super.key});
+  final int index;
+  const ServiceListingDetailScreen(this.index, {super.key});
 
   @override
   Widget build(BuildContext context) {
+    final serviceProvider = Provider.of<LocalServices>(context);
+    final serviceListing = serviceProvider.serviceList;
+    final services = serviceListing[index];
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Fixora'),
         actions: [
           IconButton(
             onPressed: () {}, 
-            icon: Icon(Icons.share)
+            icon: Icon(Icons.favorite_border)
           ),
           IconButton(
             onPressed: () {}, 
-            icon: Icon(Icons.favorite_border)
+            icon: Icon(Icons.notifications)
           )
         ],
       ),
@@ -33,8 +37,8 @@ class ServiceListingDetailScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              HeroStyle(image, title, rating),
-              SizedBox(height: 60,),
+              HeroStyle(services.featuredImage, services.title, services.price, services.rating),
+              SizedBox(height: 80,),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
@@ -43,94 +47,94 @@ class ServiceListingDetailScreen extends StatelessWidget {
                     Text(
                       'About the Service',
                       style: TextStyle(
-                        fontSize: 30,
+                        fontSize: 20,
                         color: Color(0xFF0D2C6E),
                         fontWeight: FontWeight.bold
                       ),
                     ),
                     Text(
-                      description,
+                      services.description,
                       style: TextStyle(
                         fontSize: 19
                       ),
                     ),
-                    SizedBox(height: 15,),
-                    CustomContainer(
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Icon(Icons.eco, color: Color(0xFF005234), size: 30,),
-                          Text(
-                            'Eco-Friendly',
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Color(0xFF0D2C6E),
-                              fontWeight: FontWeight.bold
-                            ),
-                          ),
-                          Text(
-                            'Non-toxic, pet-safe materials only',
-                            style: TextStyle(
-                              fontSize: 18
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: 20,),
-                    CustomContainer(
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Icon(Icons.timer, color: Color(0xFF005234), size: 30,),
-                          Text(
-                            'Efficient',
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Color(0xFF0D2C6E),
-                              fontWeight: FontWeight.bold
-                            ),
-                          ),
-                          Text(
-                            'Thorough results in 4 - 6 hours',
-                            style: TextStyle(
-                              fontSize: 18
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: 20,),
-                    CustomContainer(
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    const SizedBox(height: 20,),
+                    ServiceBadge(),
+                    const SizedBox(height: 15,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Icon(Icons.security, color: Color(0xFF005234), size: 30,),
                         Text(
-                          'Insured',
+                          'Service Highlights',
                           style: TextStyle(
-                            fontSize: 18,
-                            color: Color(0xFF0D2C6E),
+                            fontSize: 20,
+                            color: Color(0xFF001A41),
                             fontWeight: FontWeight.bold
                           ),
                         ),
                         Text(
-                          'Full liability coverage included',
+                          'Included',
                           style: TextStyle(
-                            fontSize: 18
+                            color: Color(0xFF005234),
+                            fontWeight: FontWeight.bold
                           ),
                         )
                       ],
                     ),
-                  ),
+                    const SizedBox(height: 10,),
+                    CustomContainer(
+                      ListTile(
+                        leading: CircleAvatar(
+                          backgroundColor: const Color.fromARGB(134, 105, 240, 175),
+                          child: Icon(Icons.car_repair, color: Color(0xFF005234),),
+                        ),
+                        title: Text(
+                          'Executive Transit Management',
+                          style: TextStyle(
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold
+                          ),
+                        ),
+                      )
+                    ),
+                    CustomContainer(
+                      ListTile(
+                        leading: CircleAvatar(
+                          backgroundColor: const Color.fromARGB(134, 105, 240, 175),
+                          child: Icon(Icons.event_available, color: Color(0xFF005234),),
+                        ),
+                        title: Text(
+                          'Priority Venue Access',
+                          style: TextStyle(
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold
+                          ),
+                        ),
+                      )
+                    ),
+                    CustomContainer(
+                      ListTile(
+                        leading: CircleAvatar(
+                          backgroundColor: const Color.fromARGB(134, 105, 240, 175),
+                          child: Icon(Icons.security, color: Color(0xFF005234),),
+                        ),
+                        title: Text(
+                          'Discrete Presence Detail',
+                          style: TextStyle(
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold
+                          ),
+                        ),
+                      )
+                    ),
                   SizedBox(height: 20,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Client Perspectives',
+                        'Customers Review',
                         style: TextStyle(
-                          fontSize: 25,
+                          fontSize: 20,
                           color: Color(0xFF0D2C6E),
                           fontWeight: FontWeight.bold
                         ),
@@ -147,49 +151,9 @@ class ServiceListingDetailScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 10,),
-                  CustomContainer(
-                    Column(
-                      children: [
-                        ListTile(
-                          leading: CircleAvatar(
-                            backgroundColor: Colors.blue[100],
-                            child: Text(
-                              'MS',
-                              style: TextStyle(
-                                fontSize: 20,
-                                color: Color(0xFF0D2C6E),
-                                fontWeight: FontWeight.bold
-                              ),
-                            ),
-                          ),
-                          title: Text(
-                            'Marcus Sterling'
-                          ),
-                          subtitle: Row(
-                            children: [
-                              Icon(Icons.star, color: Color(0xFF005234), size: 20,),
-                              Icon(Icons.star, color: Color(0xFF005234), size: 20,),
-                              Icon(Icons.star, color: Color(0xFF005234), size: 20,),
-                              Icon(Icons.star, color: Color(0xFF005234), size: 20,),
-                              Icon(Icons.star, color: Color(0xFF005234), size: 20,),
-                            ],
-                          ),
-                          trailing: Text(
-                            '2 days ago'
-                          ),
-                        ),
-                        Text(
-                          '"The attention to detail was beyond anything I\'ve experienced before. Every surface gleams, and the house feels fresh without the harsh chemical smell"',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontStyle: FontStyle.italic,
-                          ),
-                        )
-                      ],
-                    )
-                  ),
-                  SizedBox(height: 20,),
+                  const SizedBox(height: 10,),
+                  CustomerReviews(),
+                  const SizedBox(height: 20,),
                   ],
                 ),
               )

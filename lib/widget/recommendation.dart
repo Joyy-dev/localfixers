@@ -104,11 +104,12 @@ class Recommendation extends StatelessWidget {
                               Navigator.push(
                                 context, 
                                 MaterialPageRoute(builder: (_) => ServiceListingDetailScreen(
-                                  recommend.featuredImage, 
-                                  recommend.title, 
-                                  recommend.rating, 
-                                  recommend.price, 
-                                  recommend.description
+                                  index
+                                  // recommend.featuredImage, 
+                                  // recommend.title, 
+                                  // recommend.rating, 
+                                  // recommend.price, 
+                                  // recommend.description
                                 ))
                               );
                             }, 

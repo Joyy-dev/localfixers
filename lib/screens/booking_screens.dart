@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:localfixers/widget/custom_container.dart';
 //import 'package:localfixers/widget/reservation_summary.dart';
@@ -19,9 +18,7 @@ class BookingScreens extends StatelessWidget {
       ),
       bottomNavigationBar: BottomAppBar(
         child: ElevatedButton(
-          onPressed: () {
-            FirebaseAuth.instance.signOut();
-          }, 
+          onPressed: () {}, 
           style: ElevatedButton.styleFrom(
             backgroundColor: Color(0xFF00174A),
             foregroundColor: Colors.white,
