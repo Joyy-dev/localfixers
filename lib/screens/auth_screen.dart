@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:localfixers/screens/buyer/buyer_home_screens.dart';
 import 'package:localfixers/screens/home_screens.dart';
+import 'package:localfixers/screens/widget/buyer_bottom_bar.dart';
 import 'package:localfixers/services/auth.dart';
 import 'package:localfixers/widget/auth_button.dart';
 import 'package:localfixers/widget/tab_switcher.dart';
@@ -67,7 +67,7 @@ class _AuthScreenState extends State<AuthScreen> {
               if (role == 'Purchase A Service') {
                 Navigator.pushReplacement(
                   context, 
-                  MaterialPageRoute(builder: (_) => BuyerHomeScreens())
+                  MaterialPageRoute(builder: (_) => BuyerBottomBar())
                 );
               } else if (role == 'Sell a Service') {
                 Navigator.pushReplacement(
@@ -87,7 +87,7 @@ class _AuthScreenState extends State<AuthScreen> {
             if (_selectedIndex == 0) {
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (_) => BuyerHomeScreens())
+              MaterialPageRoute(builder: (_) => BuyerBottomBar())
             );
           } else if (_selectedIndex == 1) {
               Navigator.pushReplacement(
